@@ -31,6 +31,14 @@ def display_budget_chart(total_income, total_expenses, net_income):
 # Create the Streamlit app
 st.title("Budget Calculator")
 
+# Add the profile section
+image = st.image("https://github.com/benjaminjvdm/benjaminjvdm.github.io/blob/main/assets/img/person2.png", width=200)
+sidebar = st.sidebar
+sidebar.title("Profile")
+sidebar.text("Name: John Doe")
+sidebar.text("Occupation: Data Scientist")
+sidebar.text("Email: john.doe@gmail.com")
+
 # Get the user's income
 st.subheader("Income")
 income = []
