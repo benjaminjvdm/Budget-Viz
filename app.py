@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import plotly.express as px
+from sklearn.linear_model import LinearRegression
 
 # Create a function to calculate the user's total income and expenses
 def calculate_budget(income, expenses):
@@ -48,6 +49,14 @@ while True:
     expenses.append((expense_type, expense_amount))
     expense_counter += 1
 
+# Fit a linear regression model to the expenses
+expenses_df = pd.DataFrame(expenses, columns=["Expense Type", "Amount"])
+X = expenses_df["Amount"].values.reshape(-1, 1)
+y = pd.DataFrame(income, columns=["Income Type", "Amount"])["Amount"].values
+reg = LinearRegression().fit(X, y)
+
+# Predict the income based on the user's expenses
+predicted_income = reg.predict(X).sum()
 
 # Calculate the user's budget and display it
 total_income, total_expenses, net_income = calculate_budget([i[1] for i in income], [e[1] for e in expenses])
@@ -55,6 +64,7 @@ st.subheader("Budget")
 st.write(f"Total Income: ${total_income:.2f}")
 st.write(f"Total Expenses: ${total_expenses:.2f}")
 st.write(f"Net Income: ${net_income:.2f}")
+st.write(f"Predicted Income based on Expenses: ${predicted_income:.2f}")
 
 # Display charts of the user's expenses and budget
 display_expenses_chart(expenses)
