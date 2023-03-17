@@ -28,7 +28,6 @@ def display_budget_chart(total_income, total_expenses, net_income):
     fig = px.bar(budget_df, x="Budget Type", y="Amount", title="Budget", color="Budget Type", color_discrete_map=color_map)
     st.plotly_chart(fig)
 
-
 # Create the Streamlit app
 st.title("Budget Calculator")
 
@@ -44,7 +43,6 @@ while True:
         break
     income.append((income_type, income_amount))
 
-
 # Get the user's expenses
 st.subheader("Expenses")
 expenses = []
@@ -57,7 +55,6 @@ while True:
         break
     expenses.append((expense_type, expense_amount))
 
-
 # Calculate the user's budget and display it
 total_income, total_expenses, net_income = calculate_budget([i[1] for i in income], [e[1] for e in expenses])
 st.subheader("Budget")
@@ -68,4 +65,3 @@ st.write(f"Net Income: ${net_income:.2f}")
 # Display charts of the user's expenses and budget
 display_expenses_chart([i[1] for i in income], [e[1] for e in expenses])
 display_budget_chart(total_income, total_expenses, net_income)
-
