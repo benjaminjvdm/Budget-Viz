@@ -40,8 +40,8 @@ while True:
 st.subheader("Expenses")
 expenses = []
 while True:
-    expense_type = st.text_input("Enter the type of expense")
-    expense_amount = st.number_input("Enter the amount of expense", step=100.0)
+    expense_type = st.text_input("Enter the type of expense", key='expense_type')
+    expense_amount = st.number_input("Enter the amount of expense", step=100.0, key='expense_amount')
     if expense_type == "" or expense_amount == 0:
         break
     expenses.append((expense_type, expense_amount))
