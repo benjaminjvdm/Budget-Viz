@@ -29,12 +29,15 @@ st.title("Budget Calculator")
 # Get the user's income
 st.subheader("Income")
 income = []
+income_counter = 0
 while True:
-    income_type = st.text_input("Enter the type of income", key='income_type')
-    income_amount = st.number_input("Enter the amount of income", step=100.0, key='income_amount')
+    income_type = st.text_input(f"Enter the type of income {income_counter}", key=f"income_type_{income_counter}")
+    income_amount = st.number_input(f"Enter the amount of income {income_counter}", step=100.0, key=f"income_amount_{income_counter}")
+    income_counter += 1
     if income_type == "" or income_amount == 0:
         break
     income.append((income_type, income_amount))
+
 
 # Get the user's expenses
 st.subheader("Expenses")
