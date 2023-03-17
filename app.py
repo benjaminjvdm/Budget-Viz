@@ -13,7 +13,6 @@ def calculate_budget(income, expenses):
 def display_expenses_chart(income, expenses):
     total_income = sum(income)
     total_expenses = sum(expenses)
-    remaining_income = total_income - total_expenses
     
     expenses_df = pd.DataFrame({'Type': ['Income', 'Expenses'], 'Amount': [total_income, total_expenses]})
     colors = ['green', 'red']
