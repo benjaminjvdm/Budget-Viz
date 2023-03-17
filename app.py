@@ -9,10 +9,14 @@ def calculate_budget(income, expenses):
     net_income = total_income - total_expenses
     return total_income, total_expenses, net_income
 
-# Create a function to display a pie chart of the user's expenses
-def display_expenses_chart(expenses):
-    expenses_df = pd.DataFrame(expenses, columns=["Expense Type", "Amount"])
-    fig = px.pie(expenses_df, values="Amount", names="Expense Type", title="Expenses")
+# Create a function to display a pie chart of the user's expenses and income
+def display_expenses_chart(income, expenses):
+    total_income = sum(income)
+    total_expenses = sum(expenses)
+    remaining_income = total_income - total_expenses
+    
+    expenses_df = pd.DataFrame({'Type': ['Expenses', 'Remaining Income'], 'Amount': [total_expenses, remaining_income]})
+    fig = px.pie(expenses_df, values='Amount', names='Type', title='Expenses vs Income')
     st.plotly_chart(fig)
 
 # Create a function to display a bar chart of the user's income and expenses
@@ -60,5 +64,6 @@ st.write(f"Total Expenses: ${total_expenses:.2f}")
 st.write(f"Net Income: ${net_income:.2f}")
 
 # Display charts of the user's expenses and budget
-display_expenses_chart(expenses)
+display_expenses_chart([i[1] for i in income], [e[1] for e in expenses])
 display_budget_chart(total_income, total_expenses, net_income)
+
