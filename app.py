@@ -32,7 +32,7 @@ def display_budget_chart(total_income, total_expenses, net_income):
 st.title("Budget Calculator")
 
 # Add the profile section
-image = st.image("https://github.com/benjaminjvdm/benjaminjvdm.github.io/blob/main/assets/img/person2.png", width=200)
+image = st.image("person2.png", width=200)
 sidebar = st.sidebar
 sidebar.title("Profile")
 sidebar.text("Name: John Doe")
