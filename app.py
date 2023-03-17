@@ -49,14 +49,19 @@ while True:
     expenses.append((expense_type, expense_amount))
     expense_counter += 1
 
-# Fit a linear regression model to the expenses
-expenses_df = pd.DataFrame(expenses, columns=["Expense Type", "Amount"])
-X = expenses_df["Amount"].values.reshape(-1, 1)
-y = pd.DataFrame(income, columns=["Income Type", "Amount"])["Amount"].values
-reg = LinearRegression().fit(X, y)
+# Check if there are any expenses before trying to fit the model
+if len(expenses) == 0:
+    st.error("Please enter at least one expense to get a prediction.")
+else:
+    # Fit a linear regression model to the expenses
+    expenses_df = pd.DataFrame(expenses, columns=["Expense Type", "Amount"])
+    X = expenses_df["Amount"].values.reshape(-1, 1)
+    y = pd.DataFrame(income, columns=["Income Type", "Amount"])["Amount"].values
+    reg = LinearRegression().fit(X, y)
 
-# Predict the income based on the user's expenses
-predicted_income = reg.predict(X).sum()
+    # Predict the income based on the user's expenses
+    predicted_income = reg.predict
+
 
 # Calculate the user's budget and display it
 total_income, total_expenses, net_income = calculate_budget([i[1] for i in income], [e[1] for e in expenses])
