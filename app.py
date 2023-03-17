@@ -30,8 +30,8 @@ st.title("Budget Calculator")
 st.subheader("Income")
 income = []
 while True:
-    income_type = st.text_input("Enter the type of income")
-    income_amount = st.number_input("Enter the amount of income", step=100.0)
+    income_type = st.text_input("Enter the type of income", key='income_type')
+    income_amount = st.number_input("Enter the amount of income", step=100.0, key='income_amount')
     if income_type == "" or income_amount == 0:
         break
     income.append((income_type, income_amount))
@@ -39,12 +39,15 @@ while True:
 # Get the user's expenses
 st.subheader("Expenses")
 expenses = []
+expense_counter = 0
 while True:
-    expense_type = st.text_input("Enter the type of expense" + str(len(expenses)), key='expense_type' + str(len(expenses)))
-    expense_amount = st.number_input("Enter the amount of expense" + str(len(expenses)), step=100.0, key='expense_amount' + str(len(expenses)))
+    expense_type = st.text_input(f"Enter the type of expense {expense_counter}", key=f"expense_type_{expense_counter}")
+    expense_amount = st.number_input(f"Enter the amount of expense {expense_counter}", step=100.0, key=f"expense_amount_{expense_counter}")
+    expense_counter += 1
     if expense_type == "" or expense_amount == 0:
         break
     expenses.append((expense_type, expense_amount))
+
 
 # Calculate the user's budget and display it
 total_income, total_expenses, net_income = calculate_budget([i[1] for i in income], [e[1] for e in expenses])
