@@ -15,8 +15,9 @@ def display_expenses_chart(income, expenses):
     total_expenses = sum(expenses)
     remaining_income = total_income - total_expenses
     
-    expenses_df = pd.DataFrame({'Type': ['Expenses', 'Remaining Income'], 'Amount': [total_expenses, remaining_income]})
-    fig = px.pie(expenses_df, values='Amount', names='Type', title='Expenses vs Income')
+    expenses_df = pd.DataFrame({'Type': ['Income', 'Expenses'], 'Amount': [total_income, total_expenses]})
+    colors = ['green', 'red']
+    fig = px.pie(expenses_df, values='Amount', names='Type', title='Expenses vs Income', color_discrete_sequence=colors)
     st.plotly_chart(fig)
 
 # Create a function to display a bar chart of the user's income and expenses
@@ -24,8 +25,10 @@ def display_budget_chart(total_income, total_expenses, net_income):
     expected_income = total_expenses * 3
     budget_df = pd.DataFrame({"Budget Type": ["Income", "Expenses", "Expected Income", "Net Income"], 
                               "Amount": [total_income, total_expenses, expected_income, net_income]})
-    fig = px.bar(budget_df, x="Budget Type", y="Amount", title="Budget")
+    color_map = {"Income": "green", "Expenses": "red", "Expected Income": "blue", "Net Income": "purple"}
+    fig = px.bar(budget_df, x="Budget Type", y="Amount", title="Budget", color="Budget Type", color_discrete_map=color_map)
     st.plotly_chart(fig)
+
 
 # Create the Streamlit app
 st.title("Budget Calculator")
