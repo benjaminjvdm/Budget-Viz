@@ -37,7 +37,7 @@ income = []
 income_counter = 0
 while True:
     income_type = st.text_input(f"Enter the type of income {income_counter}", key=f"income_type_{income_counter}")
-    income_amount = st.number_input(f"Enter the amount of income {income_counter}", step=100.0, key=f"income_amount_{income_counter}")
+    income_amount = st.number_input(f"Enter the amount of income {income_counter}", step=1.0, key=f"income_amount_{income_counter}")
     income_counter += 1
     if income_type == "" or income_amount == 0:
         break
@@ -49,7 +49,7 @@ expenses = []
 expense_counter = 0
 while True:
     expense_type = st.text_input(f"Enter the type of expense {expense_counter}", key=f"expense_type_{expense_counter}")
-    expense_amount = st.number_input(f"Enter the amount of expense {expense_counter}", step=100.0, key=f"expense_amount_{expense_counter}")
+    expense_amount = st.number_input(f"Enter the amount of expense {expense_counter}", step=1.0, key=f"expense_amount_{expense_counter}")
     expense_counter += 1
     if expense_type == "" or expense_amount == 0:
         break
