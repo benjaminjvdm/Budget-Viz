@@ -21,7 +21,7 @@ def display_expenses_chart(income, expenses):
 
 # Create a function to display a bar chart of the user's income and expenses
 def display_budget_chart(total_income, total_expenses, net_income):
-    expected_income = total_expenses * 2
+    expected_income = total_expenses * 1.5
     budget_df = pd.DataFrame({"Budget Type": ["Income", "Expenses", "Expected Income", "Net Income"], 
                               "Amount": [total_income, total_expenses, expected_income, net_income]})
     color_map = {"Income": "green", "Expenses": "red", "Expected Income": "blue", "Net Income": "purple"}
