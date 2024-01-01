@@ -20,8 +20,12 @@ def display_expenses_chart(income, expenses):
     st.plotly_chart(fig)
 
 # Create a function to display a bar chart of the user's income and expenses
-def display_budget_chart(total_income, total_expenses, net_income):
-    expected_income = total_expenses * 1.5
+def display_budget_chart(total_income, total_expenses, net_income, multiplier=1.5):
+
+    multiplier = st.selectbox('Select multiplier',  
+                            [1, 1.25, 1.5, 1.75, 2, 2.25, 2.5, 2.75, 3],  
+                            index=2)
+    expected_income = total_expenses * multiplier
     budget_df = pd.DataFrame({"Budget Type": ["Income", "Expenses", "Expected Income", "Net Income"], 
                               "Amount": [total_income, total_expenses, expected_income, net_income]})
     color_map = {"Income": "green", "Expenses": "red", "Expected Income": "blue", "Net Income": "purple"}
