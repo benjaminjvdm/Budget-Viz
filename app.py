@@ -67,11 +67,6 @@ with st.sidebar:
         index=2,
         help="Multiplier for calculating expected income based on expenses"
     )
-    
-    if st.button("🧹 Clear All Data"):
-        st.session_state.income_entries = []
-        st.session_state.expense_entries = []
-        st.experimental_rerun()
 
 # Input sections
 col1, col2 = st.columns(2)
